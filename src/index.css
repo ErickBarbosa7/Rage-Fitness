@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Aquí puedes definir tus variables de marca para Rage */
+@theme {
+  --color-background: #050505;
+  --color-surface: #0f0a1a;
+  --color-primary: #a855f7; /* morado fuerte */
+  --color-secondary: #c084fc;
+  --color-accent: #e879f9;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white antialiased;
+  }
+}

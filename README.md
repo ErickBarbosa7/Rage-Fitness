@@ -39,4 +39,4 @@ La app implementa un sistema de rangos basado en la consistencia del usuario:
    VITE_SUPABASE_ANON_KEY=tu_key
    
 Correr en desarrollo:
-npm run dev
+    ```npm run dev

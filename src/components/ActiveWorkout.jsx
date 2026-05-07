@@ -124,13 +124,22 @@ export function ActiveWorkout({ session, onAddExercise, onFinish }) {
         
         <Button 
           onClick={() => {
-            toast.promise(Promise.resolve(onFinish()), {
-              loading: 'Guardando sesión...',
-              success: 'Entrenamiento finalizado. ¡Buen trabajo, Guerrero!',
-              error: 'Error al finalizar.',
+            toast('¿Terminar el entrenamiento?', {
+              description: 'Asegúrate de haber registrado todas tus series.',
+              action: {
+                label: 'Finalizar',
+                onClick: () => onFinish() // Llama a la función principal
+              },
+              cancel: {
+                label: 'Cancelar',
+              },
+              style: {
+                background: '#18181b', // zinc-900
+                border: '1px solid #a855f7', // primary border
+              }
             });
           }} 
-          className="bg-primary text-white font-black italic uppercase py-6 shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:scale-[1.02]"
+          className="bg-primary text-white font-black italic uppercase py-6 shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:scale-[1.02] transition-all"
         >
           Finalizar Sesión
         </Button>

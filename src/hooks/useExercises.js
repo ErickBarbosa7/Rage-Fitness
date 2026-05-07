@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { exerciseService } from '../features/exercises/exerciseService'
+import { workoutApi } from '../services/workoutApi'
 
 export function useExercises() {
   const [exercises, setExercises] = useState([])
@@ -7,19 +7,28 @@ export function useExercises() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    let ignore = false;
+
     async function loadExercises() {
       try {
         setLoading(true)
-        const data = await exerciseService.getAll()
-        setExercises(data)
+        // Llamamos a la API externa
+        const data = await workoutApi.getExercises(50) 
+        
+        if (!ignore) {
+          setExercises(data)
+        }
       } catch (err) {
-        setError(err.message)
+        if (!ignore) setError(err.message)
       } finally {
-        setLoading(false)
+        if (!ignore) setLoading(false)
       }
     }
 
     loadExercises()
+
+    // Limpieza del efecto para evitar memory leaks
+    return () => { ignore = true }
   }, [])
 
   return { exercises, loading, error }

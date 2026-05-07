@@ -1,5 +1,4 @@
-
-const API_KEY = 'wx_91ee2f7b5fc4c48b5ace44167ee1db9b0d50b1a5cd15c1afdb9c6aa1'; 
+const API_KEY = import.meta.env.VITE_WORKOUTX_KEY;
 
 export const workoutApi = {
   async fetchAllExercises() {
